@@ -1,6 +1,12 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <sstream>
+#include <iomanip>
+#include <locale>
+#include <cstring>
+#include <stdlib.h>     /* exit, EXIT_FAILURE */
+#include <fstream>
 using namespace std;
 
 //will be a template class later, for now we will use strings ONLY
