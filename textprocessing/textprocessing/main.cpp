@@ -1,8 +1,8 @@
 #include "binarytree.h"
 
-void lcase(string);
 
 int main() {
+	BinaryTree text;
 	ifstream data;
 	string fileName;
 	cout << "Enter file name: ";
@@ -13,22 +13,28 @@ int main() {
 		cerr << "Error opening file";
 		exit(3);
 	}
-	string palabra; //stores word
+	string palabra, line; //stores word
 	if (data) {
 		while (data) {
 			data >> palabra;
-			getline(data, line); //moves on to the next line	
+			if (palabra == "—")
+				cout << "OH NO" << endl;
+			else {
+				palabra.erase(remove_if(palabra.begin(), palabra.end(), ispunct), palabra.end());
+				transform(palabra.begin(), palabra.end(), palabra.begin(), tolower);
+				if (!(text.searchNode(palabra))) {
+					text.insertNode(palabra);
+				}
+			}
+			
 		}
 	}
+	ofstream report;
+	report.open("report.txt");
+	report << "WORD " << setw(10) << "TIMES FOUND" << endl;
+	text.createReport(report);
+	report.close();
+	data.close();
+	system("pause");
 }
 
-void lcase(string w) {
-	for (size_t i = 0; w[i]; i++) {
-		if (islower(a[i])) {
-			a[i] = std::toupper(a[i]);// Here!
-		}
-		else if (isupper(a[i])) {
-			a[i] = std::tolower(a[i]);// Here!
-		}
-	}
-}

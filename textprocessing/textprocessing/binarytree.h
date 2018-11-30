@@ -3,8 +3,9 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
-#include <locale>
+#include <algorithm>
 #include <cstring>
+#include <locale>
 #include <stdlib.h>     /* exit, EXIT_FAILURE */
 #include <fstream>
 using namespace std;
@@ -22,23 +23,16 @@ private:
 	TreeNode *root;
 
 	void insert(TreeNode*&, TreeNode*&);
-	void displayInOrder(TreeNode *) const;
-	void displayPreOrder(TreeNode *) const;
-	void displayPostOrder(TreeNode *) const;
+	void createReport(TreeNode *, ofstream&) const;
+
 
 public:
 	BinaryTree() {
 		root = nullptr;
 	}
 	void insertNode(string);
-	void searchNode(string);
-	void displayInOrder() const{ 
-		displayInOrder(root); 
-	}
-	void displayPreOrder() const { 
-		displayPreOrder(root); 
-	}
-	void displayPostOrder() const{ 
-		displayPostOrder(root); 
+	bool searchNode(string);
+	void createReport(ofstream& r) const{ 
+		createReport(root, r);
 	}
 };
